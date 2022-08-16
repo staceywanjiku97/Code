@@ -1,4 +1,6 @@
 from enum import Enum
+from itertools import count
+import random
 
 class PlayerState(Enum):
     STOP = 1
@@ -12,13 +14,12 @@ class AudioPlayer:
         self.state = PlayerState.STOP
                    
     def play(self):
-        if self.state == PlayerState.PAUSE:
-            print("continue playing music!")
-        elif self.state == PlayerState.STOP:
-            print("Play music!!")
-        else:
-            print("Already in playing state!")
-        # print(self.music)
+        if self.count() == 0:
+            print("Empty playlist!")
+            return
+
+        for items in self.play_list:
+             print("Playing...", items)
 
         self.state = PlayerState.PLAYING
 
@@ -54,25 +55,26 @@ class AudioPlayer:
             self.play_list.append(song)
 
     def print_list(self):
-        print(self.play_list)
+        for songs in self.play_list:
+            print(songs)
+        # songs = self.play_list
+        # print(songs)
 
     def count(self):
-        print(len(self.play_list))
+        return len(self.play_list)
             
  
 if __name__ == "__main__":
     musica = AudioPlayer()
     musica.play()
-    musica.stop()
-    musica.pause()
-    musica.print_state()
+    #musica.stop()
+    #musica.pause()
+    #musica.print_state()
 
     musica.add('Deceiver_of_fools.mp3')
+    musica.add('Obsessed.mp3')
     musica.add('In_my_own_words.avi')
 
-    musica.print_list()
-    musica.count()
-
-    # 1. Add method to your AudioPlayer class that prints the play list
-    # 2. Add a method to your AudioPlayer class that returns the song count in the play list
-
+    #musica.print_list()
+    
+    
