@@ -63,17 +63,14 @@ def group_by_model(db):
 
     return group1
 
-def group_by(db, column):
+def group_by_column(db, column):
     gen_group = {}
-    # column = input("Enter the column you want to group;\n").capitalize()
     for item in db:
-
         col = item[column]
         if col in gen_group:
             gen_group[col] += 1
         else:
             gen_group[col] = 1
-
     return gen_group
 
 def audi(db):
@@ -102,32 +99,11 @@ def pretty_print(cars):
         print(f"Model: {item['Model']}")
         print("-" * 100)
 
-        #continue
-
-
 def add_num(a, b):
     result = a + b
     return result
 
 if __name__ == "__main__":
     db = make_database()
-    # print("The length of the dataset is :", len(db))
-    # #print(db)
-    #
-    # print("\nBrands")
-    # brands = grouped_by_brand(db)
-    # print(brands, "\n")
-    #
-    # print("Models:")
-    # model = group_by_model(db)
-    # print(model, "\n")
-
-    # column = input("Enter the column you want to group;\n").capitalize()
-    # any_col = group_by(db, column)
-    # print(any_col, '\n')
-
     brand_year = audi(db)
-    #print(brand_year, '\n')
-
-
     pretty_print("\n", brand_year)
