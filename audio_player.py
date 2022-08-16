@@ -6,8 +6,9 @@ class PlayerState(Enum):
     PAUSE = 3
 
 class AudioPlayer:
-    def __init__(self, music):
-        self.music = music
+    def __init__(self):
+        # self.music = music
+        self.play_list = []
         self.state = PlayerState.STOP
                    
     def play(self):
@@ -35,7 +36,7 @@ class AudioPlayer:
             print("The music has been paused!")
         else:
             print("The music is in pause state!")
-            
+
         self.state = PlayerState.PAUSE
 
     def print_state(self):
@@ -48,11 +49,30 @@ class AudioPlayer:
         else:
             print("Invalid state!")
 
+    def add(self, song):
+        if song.endswith(".mp3"):
+            self.play_list.append(song)
 
+    def print_list(self):
+        print(self.play_list)
+
+    def count(self):
+        print(len(self.play_list))
+            
+ 
 if __name__ == "__main__":
-    musica = AudioPlayer("This_is_me.mp3")
+    musica = AudioPlayer()
     musica.play()
     musica.stop()
     musica.pause()
     musica.print_state()
-    
+
+    musica.add('Deceiver_of_fools.mp3')
+    musica.add('In_my_own_words.avi')
+
+    musica.print_list()
+    musica.count()
+
+    # 1. Add method to your AudioPlayer class that prints the play list
+    # 2. Add a method to your AudioPlayer class that returns the song count in the play list
+
