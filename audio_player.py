@@ -7,6 +7,26 @@ class PlayerState(Enum):
     PLAYING = 2
     PAUSE = 3
 
+class Song:
+    def __init__(self, title, artist, year, file_name):
+        self._title = title
+        self._artist = artist
+        self._year = year
+        self._file_name = file_name
+
+    def title(self):
+        return self._title
+
+    def artist(self):
+        return self._artist
+
+    def year(self):
+        return self._year
+
+    def file_name(self):
+        return self._file_name
+
+
 class AudioPlayer:
     def __init__(self):
         # self.music = music
@@ -51,18 +71,18 @@ class AudioPlayer:
             print("Invalid state!")
 
     def add(self, song):
-        if song.endswith(".mp3"):
+        if song.file_name().endswith(".mp3"):
             self.play_list.append(song)
 
     def print_list(self):
-        for songs in self.play_list:
-            print(songs)
+        for song in self.play_list:
+            print(song.title(), song.artist(), song.year(), song.file_name())
         # songs = self.play_list
         # print(songs)
 
     def count(self):
         return len(self.play_list)
-            
+          
  
 if __name__ == "__main__":
     musica = AudioPlayer()
@@ -71,10 +91,12 @@ if __name__ == "__main__":
     #musica.pause()
     #musica.print_state()
 
-    musica.add('Deceiver_of_fools.mp3')
-    musica.add('Obsessed.mp3')
-    musica.add('In_my_own_words.avi')
-
+    
     #musica.print_list()
     
+    song = Song('Obsessed', 'Celine', 2000, 'Obsessed.mp3')
+    
+    musica.add(song)
+    musica.print_list()
+    # print(song.title())
     
